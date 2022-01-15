@@ -1,0 +1,35 @@
+<main class="container my-5">
+  <div class="form-signin py-5">
+    <div class="my-5">
+      <h1 class="fw-bold font-30">Bienvenido de nuevo</h1>
+      <form class="font-14" (ngSubmit)="signIn()" [formGroup]="userCredentials">
+        <label for="code" class="label">Código</label>
+        <input type="text" class="form-control shadow-none" formControlName="code"
+          placeholder="Ingresa tu código de empleado">
+        <div class="form-text text-danger"
+          *ngIf="userCredentials.get('code')?.touched && userCredentials.get('code')?.hasError('required')">
+          <i class="bi bi-exclamation-circle"></i>
+          &nbsp;{{ codeError }}
+        </div>
+
+        <label for="password" class="label">Contraseña</label>
+        <input type="password" class="form-control shadow-none" formControlName="password"
+          placeholder="Ingresa tu contraseña">
+        <div class="form-text text-danger"
+          *ngIf="userCredentials.get('password')?.touched && userCredentials.get('password')?.hasError('required')">
+          <i class="bi bi-exclamation-circle"></i>
+          &nbsp;{{ passwordError }}
+        </div>
+
+        <div class="form-check mt-3">
+          <div class="d-flex align-items-center">
+            <input type="checkbox" class="form-check-input shadow-none" id="remember" formControlName="remember">
+            <label class="form-check-label" for="remember">Recordarme</label>
+          </div>
+        </div>
+
+        <button type="submit" class="w-100 btn btn-lg btn-primary font-14 mt-3 shadow-none">Iniciar sesión</button>
+      </form>
+    </div>
+  </div>
+</main>

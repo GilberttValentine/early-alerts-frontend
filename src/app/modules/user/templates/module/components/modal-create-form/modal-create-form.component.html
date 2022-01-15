@@ -1,0 +1,101 @@
+<form (ngSubmit)="createForm()" [formGroup]="dinamicForm">
+  <div class="modal fade" id="createFormModal" tabindex="-1" aria-labelledby="createFormModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="d-flex flex-wrap align-items-center">
+            <h5 class="modal-title font-20 fw-bold" id="createFormModalLabel">Formulario</h5>
+            <button type="button" class="btn btn-outline-dark btn-sm ms-3 px-2 font-13 shadow-none"
+              (click)="addInput()">Agregar campo</button>
+          </div>
+          <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h1 class="fw-bold font-20 mt-4">Configuración del formulario</h1>
+          <label class="label">Nombre del formulario:</label>
+          <input class="form-control shadow-none" placeholder="Ingresa el nombre del formulario" formControlName="name">
+          <label class="label">Estado:</label>
+          <select class="form-select shadow-none" formControlName="state">
+            <option disabled selected value="null">Selecciona una opción</option>
+            <option value="true">Público</option>
+            <option value="false">Privado</option>
+          </select>
+          <h1 class="fw-bold font-20 mt-4">Campos</h1>
+          <div class="py-5 text-center" *ngIf="dinamicForm.value.inputs.length === 0; else inputs_avaliable">
+            <div class="fs-1 mt-5">
+              <i class="bi bi-archive-fill"></i>
+            </div>
+            <div class="mb-5 fs-6">
+              No has agregado campos al formulario
+            </div>
+          </div>
+          <ng-template #inputs_avaliable>
+            <div class="accordion accordion-flush" id="accordionFlushExample">
+              <div formArrayName="inputs" class="accordion-item" *ngFor="let input of inputs.controls; let i = index">
+                <h2 class="accordion-header" [id]="'flush-heading-' + input.value.key">
+                  <button class="accordion-button shadow-none collapsed font-14" type="button" data-bs-toggle="collapse"
+                    [attr.data-bs-target]="'#flush-collapse' + input.value.key" aria-expanded="false"
+                    [attr.aria-controls]="'flush-collapse' + input.value.key">
+                    Campo #{{ i + 1 }}
+                  </button>
+                </h2>
+                <div id="flush-collapse{{ input.value.key }}" class="accordion-collapse collapse"
+                  [attr.aria-labelledby]="'flush-heading'+input.value.key" data-bs-parent="#accordionFlushExample">
+                  <div class="accordion-body">
+                    <div [formGroupName]="i">
+                      <div class="d-flex flex-wrap">
+                        <div class="flex-fill pe-md-4">
+                          <h1 class="fw-bold font-20 mt-3">Configuraciones</h1>
+                          <label class="label" [attr.for]="'label' + input.value.key">Nombrel del campo:</label>
+                          <input class="form-control config shadow-none" placeholder="Ingresa el nombre del campo"
+                            [attr.id]="'label' + input.value.key" formControlName="label">
+                          <div *ngIf="input.value.label !== ''">
+                            <label class="label">Tipo de campo:</label>
+                            <select class="form-select shadow-none" formControlName="type">
+                              <option disabled selected value="">Selecciona una opción</option>
+                              <option value="text">Texto</option>
+                              <option value="number">Númerico</option>
+                              <option value="date">Fecha</option>
+                              <option value="select">Selección</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="flex-fill">
+                          <h1 class="fw-bold font-20 mt-3">Representación visual</h1>
+                          <div class="py-5 text-center" *ngIf="input.value.label === '';else show_representation">
+                            <div class="fs-1 mt-auto">
+                              <i class="bi bi-box"></i>
+                            </div>
+                            <div class="mb-auto font-13 text-break">
+                              Configura el campo para su visualización
+                            </div>
+                          </div>
+                          <ng-template #show_representation>
+                            <label [attr.for]="'label' + input.value.key" class="label">{{ input.value.label }}:</label>
+                            <div *ngIf="input.value.type !== 'select'">
+                              <input class="form-control shadow-none" [type]="input.value.type"
+                                [placeholder]="input.value.placeholder">
+                            </div>
+                          </ng-template>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                      <button type="button" class="btn btn-danger font-13 shadow-none" (click)="removeInput(i)">Eliminar
+                        campo</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary font-13 shadow-none" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary font-13 shadow-none">Crear formulario</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,1 +1,136 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.font-12 {
+  font-size: 12px;
+}
+
+.font-13 {
+  font-size: 13px;
+}
+
+.font-14 {
+  font-size: 14px;
+}
+
+.font-15 {
+  font-size: 15px;
+}
+
+.font-16 {
+  font-size: 16px;
+}
+
+.font-18 {
+  font-size: 18px;
+}
+
+.font-19 {
+  font-size: 19px;
+}
+
+.font-20 {
+  font-size: 20px;
+}
+
+.font-28 {
+  font-size: 28px;
+}
+
+.font-30 {
+  font-size: 30px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  z-index: 101;
+}
+
+.bg-transparent {
+  background: transparent;
+}
+
+.bg-secondary {
+  background: #FF2E63 !important;
+}
+
+.bg-dark-custom {
+  background: #282828;
+}
+
+.btn-orange, .bg-primary {
+  background: #08D9D6 !important;
+  border: 1px solid #08D9D6;
+}
+
+.btn-outline-primary {
+  border: 1px solid #08D9D6;
+  color: #08D9D6;
+  font-weight: 500;
+}
+
+.btn-outline-primary:hover {
+  background: #08D9D6;
+  color: #000000;
+  border: 1px solid #08D9D6;
+}
+
+.text-truncate-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.btn-back {
+  border-radius: 50%;
+  -webkit-text-stroke: 1px rgb(0, 0, 0);
+}
+
+.btn-back:hover, .btn-back:focus {
+  background: #e0e0e0;
+}
+
+.btn-search {
+  color: #b9bec4;
+  border-left: 0px;
+  -webkit-text-stroke: 1px;
+}
+
+.btn-search:hover {
+  color: #08D9D6 !important;
+}
+
+.icon-bold {
+  -webkit-text-stroke: 1px;
+}
+
+.text-primary-custom {
+  color: #08D9D6;
+}
+
+.text-secondary-custom {
+  color: #FF2E63;
+}

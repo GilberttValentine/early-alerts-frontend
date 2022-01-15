@@ -1,0 +1,37 @@
+<div class="modal fade" id="addModuleModal" tabindex="-1" aria-labelledby="addModuleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title font-18 fw-bold" id="addModuleModalLabel">Crear módulo</h5>
+        <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form class="font-13" (ngSubmit)="createModule()" [formGroup]="moduleData">
+        <div class="modal-body">
+          <div class="font-13">
+            <label for="name" class="label">Nombre</label>
+            <input type="text" class="form-control shadow-none" formControlName="name" placeholder="Ingresa el nombre del módulo">
+            <div class="form-text text-danger"
+              *ngIf="moduleData.get('name')?.touched && moduleData.get('name')?.hasError('required')">
+              <i class="bi bi-exclamation-circle"></i>
+              &nbsp;Por favor ingresa el nombre del módulo
+            </div>
+          </div>
+          <div>
+            <label for="description" class="label">Descripción</label>
+            <textarea type="text" class="form-control shadow-none" formControlName="description" placeholder="Ingresa una breve descripción del módulo"></textarea>
+            <div class="form-text text-danger"
+              *ngIf="moduleData.get('description')?.touched && moduleData.get('description')?.hasError('required')">
+              <i class="bi bi-exclamation-circle"></i>
+              &nbsp;Por favor realiza una breve descripción del módulo
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary font-13 shadow-none" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary font-13 shadow-none">Crear módulo</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>

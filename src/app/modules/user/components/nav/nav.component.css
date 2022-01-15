@@ -1,0 +1,26 @@
+.navbar-brand {
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  font-size: 1rem;
+  background: #282828;
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+.navbar {
+  background: transparent;
+}
+
+.navbar .navbar-toggler {
+  top: .50rem;
+  right: 1rem;
+  font-size: 15px;
+  border: none;
+}
+
+@media (max-width: 767.98px) {
+  .navbar {
+    width: 100%;
+    background: #282828;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+  }
+}

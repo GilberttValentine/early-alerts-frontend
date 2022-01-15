@@ -1,0 +1,73 @@
+.btn-close {
+  border-radius: 50%;
+  opacity: 1;
+  background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e") center/0.8em auto no-repeat;
+}
+
+.btn-close:hover {
+  background-color: rgba(175, 175, 175, 0.192);
+  opacity: 1;
+}
+
+.modal-header {
+  border-bottom: 0;
+}
+
+.modal-body {
+  padding-top: 0;
+}
+
+.modal-content {
+  border-radius: 15px;
+  border: transparent;
+}
+
+.btn-secondary {
+  color: #000000;
+  background-color: #FFFFFF;
+  border-color: #FFFFFF;
+}
+
+.btn-secondary:hover {
+  color: #fff;
+  background-color: #a9b6c2;
+  border-color: #a9b6c2;
+}
+
+.btn-primary {
+  color: #000000;
+  background-color: #08D9D6;
+  border-color: #08D9D6;
+}
+
+.btn-primary:hover {
+  background-color: #0acaba;
+  border-color: #0acaba;
+}
+
+.label {
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+form .label:first-child {
+  margin-top: 5px;
+}
+
+input, textarea {
+  font-size: 13px;
+}
+
+textarea {
+  min-height: 130px;
+  max-height: 130px;
+}
+
+.form-control {
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.text-danger {
+  color: #dc3545;
+}

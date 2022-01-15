@@ -1,0 +1,11 @@
+.form-control, .btn-search {
+  border-color: #ced4da !important;
+}
+
+.form-control {
+  border-right: 0px;
+}
+
+input[type=search]:focus~button[type=submit] {
+  color: #000000;
+}

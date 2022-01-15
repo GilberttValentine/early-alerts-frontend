@@ -1,0 +1,27 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="h5 card-title fw-bold">
+      Filtros
+    </h5>
+    <form class="font-13 mt-3" (ngSubmit)="applyFilter()" [formGroup]="filterData">
+      <div class="form-check">
+        <input class="form-check-input shadow-none" type="radio" formControlName="filter" value="all">
+        <label class="form-check-label">
+          Todos - <small class="text-muted">32</small>
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input shadow-none" type="radio" formControlName="filter" value="date-modules">
+        <label class="form-check-label">
+          Fecha de subida
+        </label>
+      </div>
+      <div class="mt-1" *ngIf="filterData.controls['filter'].value === 'date-modules'"> 
+        <input class="form-control font-12 shadow-none" type="date" formControlName="date" max="{{ maxDate }}">
+      </div>
+      <div class="d-grid mt-3">
+        <button class="btn btn-dark font-13 shadow-none" type="submit">Aplicar filtros</button>
+      </div>
+    </form>
+  </div>
+</div>

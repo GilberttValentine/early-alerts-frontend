@@ -1,0 +1,14 @@
+footer {
+  background: #3D3D47;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+a {
+  text-decoration: none;
+  color: #FFFFFF;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+a:hover {
+  color: #39a2fd;
+}
