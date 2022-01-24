@@ -1,77 +1,103 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Form } from 'src/app/modules/user/models/form.model';
-import { Input } from 'src/app/modules/user/models/input.model';
 import CodeGenerator from 'src/app/utils/code-generator';
 
 @Component({
   selector: 'app-modal-create-form',
   templateUrl: './modal-create-form.component.html',
-  styleUrls: ['./modal-create-form.component.css']
+  styleUrls: ['./modal-create-form.component.css'],
 })
 export class ModalCreateFormComponent {
   dinamicForm: FormGroup;
-  
+  key: String = CodeGenerator.generateCode();
+
   constructor(private fb: FormBuilder, private router: Router) {
-    this.dinamicForm = this.fb.group({
-      'key': [CodeGenerator.generateCode()],
-      'name': ['', Validators.required],
-      'state': [null, Validators.required],
-      'inputs': this.fb.array([])
+    const form = this.fb.group({
+      key: this.key,
+      name: ['', Validators.required],
+      state: ['', Validators.required],
+      inputs: this.fb.array([]),
     });
+
+    this.dinamicForm = form;
   }
 
   get inputs() {
     return this.dinamicForm.get('inputs') as FormArray;
   }
 
-  addInput() {
-    const key = CodeGenerator.generateCode();
+  options(inputIndex: number) {
+    return this.inputs.at(inputIndex).get('options') as FormArray;
+  }
 
+  optionsWithoutFirstElement(inputIndex: number) {
+    return (
+      this.inputs.at(inputIndex).get('options') as FormArray
+    ).controls.shift();
+  }
+
+  addInput() {
     const input = this.fb.group({
-      [`key`]: key,
-      [`label`]: ['', Validators.required],
-      [`type`]: ['', Validators.required],
-      [`placeholder`]: '',
-      [`required`]: false,
-      'options': [{
-        'key': '',
-        'value': ''
-      }]
+      key: CodeGenerator.generateCode(),
+      label: ['', Validators.required],
+      type: ['', Validators.required],
+      placeholder: '',
+      required: false,
+      options: this.fb.array([
+        this.fb.group({
+          key: CodeGenerator.generateCode(),
+          value: ['', Validators.required],
+        }),
+      ]),
+      error_message: ['Este campo es obligatorio', Validators.required],
+      restrictions: this.fb.group({
+        key: CodeGenerator.generateCode(),
+        required: true,
+        min: '',
+        max: '',
+      }),
     });
 
     this.inputs.push(input);
-
     console.log(this.inputs.controls);
+  }
+
+  onSelectTypeChange(inputIndex: number) {
+    const placeholder = this.inputs.at(inputIndex).get('placeholder');
+    placeholder?.setValue('');
+
+    const options = (this.inputs.at(inputIndex).get('options') as FormArray)
+      .controls;
+    options.splice(1, options.length);
+  }
+
+  addOption(inputIndex: number) {
+    const option = this.fb.group({
+      key: CodeGenerator.generateCode(),
+      value: ['', Validators.required],
+    });
+
+    this.options(inputIndex).push(option);
   }
 
   removeInput(index: number) {
     this.inputs.removeAt(index);
-
-    console.log(this.inputs.controls);
   }
 
-  refresh() {
-    this.inputs.controls.splice(0, this.inputs.length);
+  removeOption(inputIndex: number, optionIndex: number) {
+    this.options(inputIndex).removeAt(optionIndex);
   }
 
   createForm() {
     const dinamicForm = {
-      ...this.dinamicForm.value
-    }
+      ...this.dinamicForm.value,
+    };
 
     console.log(dinamicForm);
   }
 
   onClose() {
-    /*
-    this.dinamicForm = this.fb.group({
-      'key': [CodeGenerator.generateCode()],
-      'name': ['', Validators.required],
-      'state': [null, Validators.required],
-      'inputs': this.fb.array([])
-    });
-    */
+    this.inputs.controls.splice(0, this.inputs.length);
   }
 }

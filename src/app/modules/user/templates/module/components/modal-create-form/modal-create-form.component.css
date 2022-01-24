@@ -60,10 +60,19 @@
   font-size: 14px;
 }
 
+.form-check, .form-switch {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
 .form-control, .form-select {
   margin-bottom: 10px;
   padding: 10px;
   font-size: 13px;
+}
+
+.help-message {
+  margin-bottom: 10px;
 }
 
 .accordion-button:not(.collapsed) {
@@ -89,4 +98,18 @@
 .accordion-body {
   padding-left: 10px;
   padding-right: 10px;
+}
+
+.form-check-input {
+  height: 1.1em;
+}
+
+.form-switch .form-check-input {
+  width: 2.1em;
+  margin-right: .5em;
+}
+
+textarea {
+  min-height: 130px;
+  max-height: 130px;
 }
