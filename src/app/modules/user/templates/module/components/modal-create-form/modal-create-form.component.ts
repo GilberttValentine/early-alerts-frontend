@@ -64,8 +64,16 @@ export class ModalCreateFormComponent {
   }
 
   onSelectTypeChange(inputIndex: number) {
-    const placeholder = this.inputs.at(inputIndex).get('placeholder');
-    placeholder?.setValue('');
+    //const placeholder = this.inputs.at(inputIndex).get('placeholder');
+    //placeholder?.setValue('');
+
+    const restrictions = this.inputs.at(inputIndex).get('restrictions');
+
+    const min  = restrictions?.get('min');
+    min?.setValue('');
+
+    const max  = restrictions?.get('max');
+    max?.setValue('');
 
     const options = (this.inputs.at(inputIndex).get('options') as FormArray)
       .controls;

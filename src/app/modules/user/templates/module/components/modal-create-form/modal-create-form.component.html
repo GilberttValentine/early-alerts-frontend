@@ -225,11 +225,11 @@
                         <ng-template #show_representation>
                           <label [attr.for]="'label' + input.value.key" class="label">{{ input.value.label }} <span
                               class="text-secondary-custom" *ngIf="input.value.required === true">*</span></label>
-
+                          
                           <div
                             *ngIf="input.value.type !== 'select' && input.value.type !== 'textarea';else input_select">
                             <input class="form-control shadow-none" [type]="input.value.type"
-                              [placeholder]="input.value.placeholder">
+                              [placeholder]="input.value.placeholder" [min]="input.value.restrictions.min" [max]="input.value.restrictions.max">
                           </div>
 
                           <ng-template #input_select>
